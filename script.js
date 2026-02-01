@@ -12,10 +12,12 @@ function showGallery(type) {
             guestsGallery.classList.add('active');
             guestsGallery.style.display = 'block';
             speakersGallery.style.display = 'none';
+            setupScrollBehavior(guestsGallery);
         } else {
             speakersGallery.classList.add('active');
             speakersGallery.style.display = 'block';
             guestsGallery.style.display = 'none';
+            setupScrollBehavior(speakersGallery);
         }
 
         // Scroll to top
@@ -42,6 +44,42 @@ function showLanding() {
     setTimeout(() => {
         landing.classList.remove('hidden');
     }, 100);
+}
+
+// Setup scroll behavior for hiding/showing header
+function setupScrollBehavior(gallery) {
+    const header = gallery.querySelector('.gallery-header');
+    let lastScrollTop = 0;
+    let scrollTimeout;
+
+    gallery.addEventListener('scroll', function() {
+        // Clear existing timeout
+        clearTimeout(scrollTimeout);
+
+        // Show header briefly when scrolling
+        header.classList.remove('hidden');
+
+        // Hide header after scrolling stops (with a delay)
+        scrollTimeout = setTimeout(() => {
+            const scrollTop = gallery.scrollTop;
+            
+            // Only hide if scrolled down and not at the very top
+            if (scrollTop > 100) {
+                header.classList.add('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        }, 1000); // Hide after 1 second of no scrolling
+    });
+
+    // Show header when touching/clicking (for mobile and desktop)
+    gallery.addEventListener('touchstart', function() {
+        header.classList.remove('hidden');
+    });
+
+    gallery.addEventListener('mousedown', function() {
+        header.classList.remove('hidden');
+    });
 }
 
 // Prevent zoom on double tap (iOS)

@@ -1,58 +1,89 @@
-# Spiritual Sundays Website
+# Updates Made - Fixed Header and Scroll Issues
 
-## Setup Instructions
+## Problems Fixed:
 
-### Files Included:
-1. **index-separated.html** - Main HTML file
-2. **style.css** - Stylesheet
-3. **script.js** - JavaScript functionality
-4. **Slide_1.png through Slide_14.png** - Guest slides
-5. **S1.png through S6.png** - Speaker slides
+### 1. Header Covering Slides ✅
+**Issue:** The fixed header was covering the top portion of slides.
 
-### How to Use:
+**Solution:**
+- Removed `padding-top: 80px` from `.gallery` 
+- Now slides start at the very top of the screen
+- Header auto-hides when scrolling down
 
-#### Option 1: Local Setup (Recommended for VS Code)
-1. Create a new folder on your computer (e.g., "spiritual-sundays")
-2. Download ALL files from the outputs folder
-3. Place all files in the same folder:
-   ```
-   spiritual-sundays/
-   ├── index-separated.html
-   ├── style.css
-   ├── script.js
-   ├── Slide_1.png
-   ├── Slide_2.png
-   ├── ... (all other slides)
-   ├── S1.png
-   ├── S2.png
-   └── ... (all other S files)
-   ```
-4. Open the folder in VS Code
-5. Right-click on `index-separated.html` and select "Open with Live Server" (if you have the Live Server extension)
-   - OR simply double-click the HTML file to open it in your browser
+### 2. Slide Cut-off During Transitions ✅
+**Issue:** When scrolling between slides, the top of the next slide was getting cut off by the previous slide.
 
-#### Option 2: Using the Full Path Version
-- Use the original `index.html` file which has the full paths to the images already set
+**Solution:**
+- Removed the padding that was offsetting the slides
+- Added `scroll-snap-stop: always` for better snap behavior
+- Each slide now properly fills the entire viewport (100vh)
 
-### Troubleshooting:
+### 3. Auto-Hiding Header ✅
+**New Feature:** The header now automatically hides when you scroll down and shows when you need it.
 
-**If images don't appear:**
-1. Make sure ALL image files are in the same folder as the HTML file
-2. Check that the file names match exactly (case-sensitive)
-3. If using VS Code, use the Live Server extension for proper file serving
-4. Check the browser console (F12) for any error messages
+**Behavior:**
+- Header is visible when you first enter a gallery
+- Starts to hide after 1 second of scrolling
+- Automatically shows when you touch/click the screen
+- Stays visible when scrolled to the very top
+- Smooth slide-up/down animation
 
-**File Structure Check:**
-All files must be in the same directory. You can verify this by opening the folder and seeing all files together.
+## Changes Made to Files:
 
-### Features:
-- Elegant landing page with two navigation options
-- Full-screen vertical scrolling galleries
-- Mobile-optimized for iPhone
-- Smooth transitions and animations
-- Back button to return to home
+### style.css:
+```css
+/* Added transition and hidden state */
+.gallery-header {
+    transition: transform 0.3s ease;
+}
 
-### Browser Compatibility:
-- Best viewed on mobile devices (iPhone optimized)
-- Works on all modern browsers (Chrome, Safari, Firefox, Edge)
-- Supports touch gestures for smooth scrolling
+.gallery-header.hidden {
+    transform: translateY(-100%);
+}
+
+/* Removed padding */
+.gallery {
+    padding-top: 0; /* was 80px */
+}
+
+/* Added snap stop */
+.slide {
+    scroll-snap-stop: always;
+}
+```
+
+### script.js:
+```javascript
+// Added new function for scroll behavior
+function setupScrollBehavior(gallery) {
+    // Automatically hides header after scrolling
+    // Shows header on touch/click
+    // Keeps header visible at top of page
+}
+```
+
+## How It Works Now:
+
+1. **Enter Gallery** → Header is visible
+2. **Scroll Down** → Header stays visible while scrolling
+3. **Stop Scrolling** → Header auto-hides after 1 second
+4. **Touch Screen** → Header reappears
+5. **Scroll to Top** → Header stays visible
+6. **Click Back Button** → Return to landing page
+
+## Testing Recommendations:
+
+1. Test on mobile (iPhone) for touch behavior
+2. Test on desktop with mouse scrolling
+3. Verify slides are full-screen without cut-off
+4. Check that header doesn't block content
+5. Ensure smooth transitions between slides
+
+## Files Updated:
+
+- ✅ index.html (all-in-one version)
+- ✅ index-separated.html
+- ✅ style.css
+- ✅ script.js
+
+All files have been updated with the same fixes!

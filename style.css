@@ -168,6 +168,11 @@ body {
     justify-content: space-between;
     align-items: center;
     backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.gallery-header.hidden {
+    transform: translateY(-100%);
 }
 
 .back-button {
@@ -207,7 +212,7 @@ body {
 /* Gallery Images */
 .gallery {
     width: 100%;
-    padding-top: 80px;
+    padding-top: 0;
 }
 
 .slide {
@@ -216,6 +221,7 @@ body {
     position: relative;
     overflow: hidden;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .slide img {
