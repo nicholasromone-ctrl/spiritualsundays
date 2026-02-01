@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spiritual Sundays</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f5f3ef;
+            --text-primary: #2a2a2a;
+            --text-secondary: #6b6b6b;
+            --accent: #8b7355;
+            --accent-light: #c4b5a0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Landing Page */
+        .landing {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(245, 243, 239, 0.95) 0%, rgba(235, 230, 220, 0.98) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            padding: 2rem;
+        }
+
+        .landing.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .landing-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(196, 181, 160, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 115, 85, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .landing-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .landing h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .landing-subtitle {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 300px;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+        }
+
+        .nav-button {
+            padding: 1.2rem 3rem;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(139, 115, 85, 0.3);
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 115, 85, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 115, 85, 0.15);
+            border-color: var(--accent);
+        }
+
+        /* Gallery Container */
+        .gallery-container {
+            width: 100%;
+            min-height: 100vh;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .gallery-container.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Navigation Header */
+        .gallery-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(180deg, rgba(245, 243, 239, 0.98) 0%, rgba(245, 243, 239, 0.95) 70%, transparent 100%);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            color: var(--accent);
+        }
+
+        .back-button::before {
+            content: '←';
+            font-size: 1.2rem;
+        }
+
+        .gallery-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+        }
+
+        /* Gallery Images */
+        .gallery {
+            width: 100%;
+            padding-top: 80px;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            scroll-snap-align: start;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Smooth Scrolling */
+        .gallery-container.active {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Scrollbar Styling */
+        .gallery-container::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .gallery-container::-webkit-scrollbar-track {
+            background: rgba(245, 243, 239, 0.5);
+        }
+
+        .gallery-container::-webkit-scrollbar-thumb {
+            background: var(--accent-light);
+            border-radius: 2px;
+        }
+
+        /* Loading Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide {
+            animation: slideIn 0.6s ease-out both;
+        }
+
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 0.05s; }
+        .slide:nth-child(3) { animation-delay: 0.1s; }
+        .slide:nth-child(4) { animation-delay: 0.15s; }
+        .slide:nth-child(5) { animation-delay: 0.2s; }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .landing h1 {
+                font-size: 3rem;
+            }
+
+            .landing-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .gallery-header {
+                padding: 1rem 1.5rem;
+            }
+
+            .gallery-title {
+                font-size: 1rem;
+            }
+        }
+
+        /* Hide elements initially */
+        #guests-gallery,
+        #speakers-gallery {
+            display: none;
+        }
+
+        #guests-gallery.active,
+        #speakers-gallery.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div class="landing" id="landing">
+        <div class="landing-bg"></div>
+        <div class="landing-content">
+            <h1>Spiritual Sundays</h1>
+            <p class="landing-subtitle">Welcome</p>
+            <div class="button-container">
+                <button class="nav-button" onclick="showGallery('guests')">Guests</button>
+                <button class="nav-button" onclick="showGallery('speakers')">Speakers</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guests Gallery -->
+    <div class="gallery-container" id="guests-gallery">
+        <div class="gallery-header">
+            <button class="back-button" onclick="showLanding()">Home</button>
+            <div class="gallery-title">For Guests</div>
+            <div style="width: 60px;"></div>
+        </div>
+        <div class="gallery">
+            <div class="slide"><img src="Slide_2.png" alt="Slide 2"></div>
+            <div class="slide"><img src="Slide_3.png" alt="Slide 3"></div>
+            <div class="slide"><img src="Slide_4.png" alt="Slide 4"></div>
+            <div class="slide"><img src="Slide_5.png" alt="Slide 5"></div>
+            <div class="slide"><img src="Slide_6.png" alt="Slide 6"></div>
+            <div class="slide"><img src="Slide_7.png" alt="Slide 7"></div>
+            <div class="slide"><img src="Slide_8.png" alt="Slide 8"></div>
+            <div class="slide"><img src="Slide_9.png" alt="Slide 9"></div>
+            <div class="slide"><img src="Slide_10.png" alt="Slide 10"></div>
+            <div class="slide"><img src="Slide_11.png" alt="Slide 11"></div>
+            <div class="slide"><img src="Slide_12.png" alt="Slide 12"></div>
+            <div class="slide"><img src="Slide_13.png" alt="Slide 13"></div>
+            <div class="slide"><img src="Slide_14.png" alt="Slide 14"></div>
+        </div>
+    </div>
+
+    <!-- Speakers Gallery -->
+    <div class="gallery-container" id="speakers-gallery">
+        <div class="gallery-header">
+            <button class="back-button" onclick="showLanding()">Home</button>
+            <div class="gallery-title">For Speakers</div>
+            <div style="width: 60px;"></div>
+        </div>
+        <div class="gallery">
+            <div class="slide"><img src="S1.png" alt="Speaker Slide 1"></div>
+            <div class="slide"><img src="S2.png" alt="Speaker Slide 2"></div>
+            <div class="slide"><img src="S3.png" alt="Speaker Slide 3"></div>
+            <div class="slide"><img src="S4.png" alt="Speaker Slide 4"></div>
+            <div class="slide"><img src="S5.png" alt="Speaker Slide 5"></div>
+            <div class="slide"><img src="S6.png" alt="Speaker Slide 6"></div> 
+            <div class="slide"><img src="S7.png" alt="Speaker Slide 7"></div>
+            <div class="slide"><img src="S8.png" alt="Speaker Slide 8"></div>
+            <div class="slide"><img src="S9.png" alt="Speaker Slide 9"></div>
+            <div class="slide"><img src="S10.png" alt="Speaker Slide 10"></div>
+        </div>
+    </div>
+
+    <script>
+        function showGallery(type) {
+            const landing = document.getElementById('landing');
+            const guestsGallery = document.getElementById('guests-gallery');
+            const speakersGallery = document.getElementById('speakers-gallery');
+
+            // Hide landing page
+            landing.classList.add('hidden');
+
+            // Show appropriate gallery
+            setTimeout(() => {
+                if (type === 'guests') {
+                    guestsGallery.classList.add('active');
+                    guestsGallery.style.display = 'block';
+                    speakersGallery.style.display = 'none';
+                } else {
+                    speakersGallery.classList.add('active');
+                    speakersGallery.style.display = 'block';
+                    guestsGallery.style.display = 'none';
+                }
+
+                // Scroll to top
+                setTimeout(() => {
+                    if (type === 'guests') {
+                        guestsGallery.scrollTop = 0;
+                    } else {
+                        speakersGallery.scrollTop = 0;
+                    }
+                }, 50);
+            }, 400);
+        }
+
+        function showLanding() {
+            const landing = document.getElementById('landing');
+            const guestsGallery = document.getElementById('guests-gallery');
+            const speakersGallery = document.getElementById('speakers-gallery');
+
+            // Hide galleries
+            guestsGallery.classList.remove('active');
+            speakersGallery.classList.remove('active');
+
+            // Show landing after transition
+            setTimeout(() => {
+                landing.classList.remove('hidden');
+            }, 100);
+        }
+
+        // Prevent zoom on double tap (iOS)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>
