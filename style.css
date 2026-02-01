@@ -153,6 +153,10 @@ body {
 .gallery-container.active {
     opacity: 1;
     visibility: visible;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Navigation Header */
@@ -213,30 +217,27 @@ body {
 .gallery {
     width: 100%;
     padding-top: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .slide {
     width: 100%;
+    min-height: 100vh;
     height: 100vh;
     position: relative;
     overflow: hidden;
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    flex-shrink: 0;
 }
 
 .slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
-}
-
-/* Smooth Scrolling */
-.gallery-container.active {
-    scroll-snap-type: y mandatory;
-    overflow-y: scroll;
-    height: 100vh;
-    -webkit-overflow-scrolling: touch;
+    background: var(--bg-primary);
 }
 
 /* Scrollbar Styling */

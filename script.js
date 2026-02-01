@@ -49,36 +49,56 @@ function showLanding() {
 // Setup scroll behavior for hiding/showing header
 function setupScrollBehavior(gallery) {
     const header = gallery.querySelector('.gallery-header');
-    let lastScrollTop = 0;
     let scrollTimeout;
+    let isScrolling = false;
 
     gallery.addEventListener('scroll', function() {
         // Clear existing timeout
         clearTimeout(scrollTimeout);
 
-        // Show header briefly when scrolling
-        header.classList.remove('hidden');
+        // Show header while actively scrolling
+        if (!isScrolling) {
+            isScrolling = true;
+            header.classList.remove('hidden');
+        }
 
-        // Hide header after scrolling stops (with a delay)
+        // Hide header after scrolling stops
         scrollTimeout = setTimeout(() => {
             const scrollTop = gallery.scrollTop;
             
-            // Only hide if scrolled down and not at the very top
-            if (scrollTop > 100) {
+            // Hide if scrolled down (not at very top)
+            if (scrollTop > 50) {
                 header.classList.add('hidden');
             }
             
-            lastScrollTop = scrollTop;
-        }, 1000); // Hide after 1 second of no scrolling
+            isScrolling = false;
+        }, 1500); // Hide after 1.5 seconds of no scrolling
     });
 
     // Show header when touching/clicking (for mobile and desktop)
     gallery.addEventListener('touchstart', function() {
         header.classList.remove('hidden');
+        clearTimeout(scrollTimeout);
     });
 
-    gallery.addEventListener('mousedown', function() {
+    gallery.addEventListener('mouseenter', function() {
         header.classList.remove('hidden');
+    });
+
+    // Tap anywhere to show header
+    gallery.addEventListener('click', function(e) {
+        // Don't trigger if clicking the back button
+        if (!e.target.closest('.back-button')) {
+            header.classList.remove('hidden');
+            
+            // Auto-hide again after a moment
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (gallery.scrollTop > 50) {
+                    header.classList.add('hidden');
+                }
+            }, 2000);
+        }
     });
 }
 
