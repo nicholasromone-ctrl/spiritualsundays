@@ -1,0 +1,360 @@
+/* CSS Variables - Color Palette from Images */
+:root {
+    --primary-beige: #EFE4D4;
+    --primary-green: #536B5C;
+    --accent-sage: #B8C4B8;
+    --dark-text: #1A1A1A;
+    --light-text: #FFFFFF;
+    --error-red: #C65D4F;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Garamond', serif;
+    background-color: var(--primary-beige);
+    color: var(--dark-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Homepage Styles */
+.homepage {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.8s ease-in;
+}
+
+.logo-container {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.02);
+}
+
+/* Button Styles */
+.button-container {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10;
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 35px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-family: 'Georgia', 'Garamond', serif;
+}
+
+.btn-primary {
+    background-color: var(--primary-green);
+    color: var(--light-text);
+    box-shadow: 0 4px 15px rgba(83, 107, 92, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #3f5447;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(83, 107, 92, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background-color: var(--accent-sage);
+    color: var(--dark-text);
+    box-shadow: 0 4px 15px rgba(184, 196, 184, 0.3);
+}
+
+.btn-secondary:hover {
+    background-color: #a3b3a3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(184, 196, 184, 0.4);
+}
+
+.btn-contact {
+    background-color: var(--primary-green);
+    color: var(--light-text);
+}
+
+/* Slide Container Styles */
+.slide-container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0 auto;
+}
+
+.slide-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.6s ease-out;
+}
+
+.contact-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+/* Slide 14 with Contact Overlay */
+.slide-with-contact {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.slide-with-contact .slide-image {
+    margin-bottom: 0;
+}
+
+.contact-overlay {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 90%;
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+}
+
+.contact-overlay .btn-contact {
+    width: 100%;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.back-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px 20px 20px;
+}
+
+/* Password Screen Styles */
+.password-screen {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+.password-box {
+    background-color: #FFFFFF;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    animation: fadeIn 0.6s ease-in;
+}
+
+.password-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--primary-green);
+    text-align: center;
+}
+
+.password-box p {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #666;
+}
+
+#password-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 2px solid var(--accent-sage);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-family: 'Georgia', 'Garamond', serif;
+    transition: border-color 0.3s ease;
+}
+
+#password-input:focus {
+    outline: none;
+    border-color: var(--primary-green);
+}
+
+.password-box .btn {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.back-link {
+    display: block;
+    margin-top: 10px;
+}
+
+.error-message {
+    color: var(--error-red);
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    min-height: 20px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design for Larger Screens */
+@media (min-width: 768px) {
+    .container {
+        padding: 40px;
+    }
+    
+    .homepage {
+        max-width: 600px;
+    }
+    
+    .logo {
+        max-width: 400px;
+    }
+    
+    .button-container {
+        bottom: 60px;
+        max-width: 320px;
+        gap: 18px;
+    }
+    
+    .btn {
+        padding: 18px 40px;
+        font-size: 1.1rem;
+    }
+    
+    .slide-container {
+        max-width: 700px;
+    }
+    
+    .slide-image {
+        border-radius: 25px;
+        margin-bottom: 40px;
+    }
+    
+    .contact-overlay {
+        bottom: 80px;
+        max-width: 280px;
+    }
+    
+    .password-box {
+        padding: 50px 40px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .homepage {
+        max-width: 700px;
+    }
+    
+    .logo {
+        max-width: 450px;
+    }
+    
+    .button-container {
+        bottom: 70px;
+        max-width: 350px;
+    }
+    
+    .slide-container {
+        max-width: 800px;
+    }
+    
+    .slide-image {
+        margin-bottom: 50px;
+    }
+    
+    .contact-overlay {
+        bottom: 100px;
+        max-width: 300px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .btn, .button-container, .back-button, .password-screen {
+        display: none;
+    }
+}

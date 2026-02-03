@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speakers - Spiritual Sundays</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Password Protection Screen -->
+        <div id="password-screen" class="password-screen">
+            <div class="password-box">
+                <h2>Enter Password</h2>
+                <p>This section is protected. Please enter the password to continue.</p>
+                <input type="password" id="password-input" placeholder="Enter password" autocomplete="off">
+                <button onclick="checkPassword()" class="btn btn-primary">Submit</button>
+                <p id="error-message" class="error-message"></p>
+                <a href="index.html" class="btn btn-secondary back-link">Back to Home</a>
+            </div>
+        </div>
+        
+        <!-- Protected Content -->
+        <div id="protected-content" class="slide-container" style="display: none;">
+            <img src="S1.png" alt="Speaker Information 1" class="slide-image">
+            <img src="S2.png" alt="Speaker Information 2" class="slide-image">
+            <img src="S3.png" alt="Speaker Information 3" class="slide-image">
+            <img src="S4.png" alt="Speaker Information 4" class="slide-image">
+            <img src="S5.png" alt="Speaker Information 5" class="slide-image">
+            
+            <div class="back-button">
+                <a href="index.html" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
