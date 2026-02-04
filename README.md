@@ -40,8 +40,8 @@ spiritual-sundays/
 
 ### Speakers Page (speakers.html)
 - Password protected (Password: "Jesusisking")
-- Displays speaker slides S1-S5 in order
-- **NEW: RSVP button on S5** - Links to Google Forms
+- Displays speaker slides S1-S9 in order
+- **NEW: RSVP button on S9** - Links to speaker-specific Google Form
 - Session-based authentication (remains unlocked during browser session)
 - Same responsive design as guest list page
 
@@ -77,9 +77,9 @@ spiritual-sundays/
 - Case-sensitive password matching
 
 ### Image Overlays
-- **Slide_13**: RSVP button overlay
-- **Slide_14**: Contact button overlay
-- **S5**: RSVP button overlay
+- **Slide_13**: RSVP button overlay (Guest List form)
+- **Slide_14**: Contact button overlay (opens email to info@spiritualsundays.club)
+- **S9**: RSVP button overlay (Speakers form)
 - Buttons positioned at bottom of respective slides
 - Responsive positioning across all screen sizes
 
@@ -108,7 +108,8 @@ spiritual-sundays/
 
 ## External Links
 
-- **RSVP Form**: https://docs.google.com/forms/d/1nNLp8GuTUlw3h31GhGmlYEzvxCY18a5S5-EUlejTsQ4/edit
+- **Guest List RSVP Form**: https://docs.google.com/forms/d/1nNLp8GuTUlw3h31GhGmlYEzvxCY18a5S5-EUlejTsQ4/edit
+- **Speakers RSVP Form**: https://docs.google.com/forms/d/1sjWoNmGfv8WXLS8fPPTQmVEfto3wvx2tiDmMAeCNLEQ/edit
 - **Contact Email**: info@spiritualsundays.club
 
 ## Browser Compatibility
@@ -124,7 +125,7 @@ spiritual-sundays/
 Ensure all image files are in PNG format and named correctly:
 - Homepage.png
 - Slide_1.png - Slide_14.png
-- S1.png - S5.png
+- S1.png - S9.png
 
 ## Customization
 
@@ -146,7 +147,14 @@ For questions or issues, contact: info@spiritualsundays.club
 
 ## Version History
 
-**v1.1** (Latest)
+**v1.2** (Latest)
+- Fixed contact button email link (now properly opens email client)
+- Updated speakers page to include slides S6-S9
+- Moved RSVP button to S9 on speakers page
+- Changed speakers RSVP link to speaker-specific Google Form
+- Contact button now uses mailto:info@spiritualsundays.club
+
+**v1.1**
 - Added RSVP button to Slide_13 (Guest List page)
 - Added RSVP button to S5 (Speakers page)
 - Both RSVP buttons link to Google Forms
