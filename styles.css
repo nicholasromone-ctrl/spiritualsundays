@@ -128,6 +128,18 @@ body {
     color: var(--light-text);
 }
 
+.btn-rsvp {
+    background-color: var(--primary-green);
+    color: var(--light-text);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-rsvp:hover {
+    background-color: #3f5447;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
 /* Slide Container Styles */
 .slide-container {
     width: 100%;
@@ -164,6 +176,33 @@ body {
 
 .slide-with-contact .slide-image {
     margin-bottom: 0;
+}
+
+/* Slide with Button Overlay (for RSVP buttons) */
+.slide-with-button {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.slide-with-button .slide-image {
+    margin-bottom: 0;
+}
+
+.button-overlay {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 90%;
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+}
+
+.button-overlay .btn-rsvp {
+    width: 100%;
 }
 
 .contact-overlay {
@@ -319,6 +358,11 @@ body {
         max-width: 280px;
     }
     
+    .button-overlay {
+        bottom: 80px;
+        max-width: 280px;
+    }
+    
     .password-box {
         padding: 50px 40px;
     }
@@ -347,6 +391,11 @@ body {
     }
     
     .contact-overlay {
+        bottom: 100px;
+        max-width: 300px;
+    }
+    
+    .button-overlay {
         bottom: 100px;
         max-width: 300px;
     }
