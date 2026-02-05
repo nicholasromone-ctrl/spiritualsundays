@@ -1,5 +1,5 @@
 // Password Protection for Speakers Page
-const CORRECT_PASSWORD = "Jesusisking";
+const CORRECT_PASSWORD = "JesusisKing";
 
 function checkPassword() {
     const passwordInput = document.getElementById("password-input");
